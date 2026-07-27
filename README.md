@@ -31,16 +31,18 @@ An AI-powered document Q&A app that lets you upload your own documents (PDF, DOC
 | Config | python-dotenv |
 
 ## Project Structure
-document-qa-rag/
-├── loader.py # Loads documents (PDF/TXT/CSV/DOCX) into LangChain Document objects
-├── ingest.py # Chunks documents and stores/appends them to the vector database
-├── retrieve.py # Performs similarity search against the vector database
-├── qa.py # Builds the prompt and queries the Groq LLM for an answer
-├── main.py # Entry point — manages document ingestion and the query loop
-├── requirements.txt # Python dependencies
-├── .gitignore # Excludes .env and chroma_db/ from version control
-└── README.md
 
+```
+document-qa-rag/
+├── loader.py         # Loads documents (PDF/TXT/CSV/DOCX) into LangChain Document objects
+├── ingest.py          # Chunks documents and stores/appends them to the vector database
+├── retrieve.py        # Performs similarity search against the vector database
+├── qa.py              # Builds the prompt and queries the Groq LLM for an answer
+├── main.py            # Entry point — manages document ingestion and the query loop
+├── requirements.txt   # Python dependencies
+├── .gitignore         # Excludes .env and chroma_db/ from version control
+└── README.md
+```
 ## Setup
 
 **1. Clone the repo**
@@ -85,13 +87,10 @@ Type `exit` to quit.
 
 On future runs, you'll be asked whether to add another document. New documents are appended to the existing database — nothing is overwritten.
 
-## Roadmap
+## Notes
 
-- [ ] Web UI (Streamlit or FastAPI)
-- [ ] Batch document upload
-- [ ] Source snippet highlighting in answers
-- [ ] Support for more file types (PPTX, HTML)
-
-## License
-
-MIT
+- Get your free Groq API key at [console.groq.com](https://console.groq.com)
+- The vector database (`chroma_db/`) is generated locally when you run the app — it's not tracked in this repo, so it won't exist until you ingest your first document
+- Supports adding multiple documents over time — each new document is appended to the existing database, not overwritten
+- Answers are strictly grounded in the uploaded document's content — if the answer isn't found, the assistant will say so instead of guessing
+- Currently supports PDF, DOCX, TXT, and CSV files
